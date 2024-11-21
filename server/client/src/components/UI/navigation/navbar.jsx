@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react"
 
 import HomeButton from "./components/homeButton"
 import LogoutButton from "./components/logoutButton"
-import { PlaceButton } from './components/actionButtons'
+import { SubsButton, UsersButton } from './components/actionButtons'
 
 export default function Navbar() {
     return (
@@ -14,7 +14,8 @@ export default function Navbar() {
         }}>
             <Flex alignItems={'center'} justifyContent={'space-between'} >
                 <Flex style={{boxSizing:"border-box", width: '100%'}} justifyContent="space-evenly">
-                    <PlaceButton/>
+                    <SubsButton/>
+                    <UsersButton/>
                 </Flex>
                 <Flex alignItems='center' justifyContent={'center'}>
                     <HomeButton/>

@@ -1,7 +1,7 @@
 import { Flex, Box } from "@chakra-ui/react"
 
 import HomeButton from "./components/homeButton"
-import { PlaceButton } from './components/actionButtons'
+import { SubsButton } from './components/actionButtons'
 
 export default function NavbarMob() {
     return (
@@ -14,7 +14,7 @@ export default function NavbarMob() {
         }}>
             <Flex alignItems={'center'} justifyContent={'space-between'} >
                 <Flex style={{boxSizing:"border-box", width: '100%'}} justifyContent={'space-evenly'} alignItems={'center'}>
-                    <PlaceButton/>
+                    <SubsButton/>
                 </Flex>
                 <Flex alignItems='center' justifyContent={'center'}>
                     <HomeButton mobile/>

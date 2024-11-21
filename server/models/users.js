@@ -21,6 +21,18 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    posts: {
+        type: String
+    },
+    subs: {
+        type: String        
+    },
+    upvoted: {
+        type: String
+    },
+    downvoted: {
+        type: String
+    }
 }, {timestamps: true})
 
 module.exports = mongoose.model('users', userSchema)

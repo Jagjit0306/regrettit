@@ -1,5 +1,6 @@
 const { Login, Register, Logout } = require('./controller/initial')
 const { Token, UsernameCheck, ValidateToken } = require('./controller/basic')
+const { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetSubPosts, GetAllUsers } = require('./controller/regret')
 
 const authenticateToken = require('./functions/authenticateToken')
 const authenticateUser = require('./functions/authenticateUser')
@@ -25,5 +26,21 @@ router.post('/token', Token)
 router.get('/usernameCheck', UsernameCheck)
 
 router.post('/validateToken', ValidateToken)
+
+router.post('/newsub', authenticateToken, NewSub)
+
+router.get('/getallsubs', authenticateToken, GetAllSubs)
+
+router.get('/getsub', authenticateToken, GetSub)
+
+router.post('/newpost', authenticateToken, NewPost)
+
+router.get('/vote', authenticateToken, Vote)
+
+router.get('/getuserbyid', authenticateToken, GetUserById)
+
+router.get('/getsubposts', authenticateToken, GetSubPosts)
+
+router.get('/getallusers', authenticateToken, GetAllUsers)
 
 module.exports = router

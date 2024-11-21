@@ -1,12 +1,24 @@
 import { Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export function PlaceButton() {
+export function SubsButton() {
     return (
         <>
-            <Link to='/errands'>
+            <Link to='/r'>
                 <Text>
-                    To_Place
+                    SUBS
+                </Text>
+            </Link>
+        </>
+    )
+}
+
+export function UsersButton() {
+    return (
+        <>
+            <Link to='/u'>
+                <Text>
+                    USERS
                 </Text>
             </Link>
         </>

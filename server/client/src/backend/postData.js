@@ -10,11 +10,11 @@ async function postData(destination, payload) {
             },
             credentials: 'include'
         })
-        if (response.status == 403 || response.statud == 401) {
+        if (response.status === 403 || response.statud === 401) {
             const refreshAttempt = await getNewToken(()=>postData(...arguments))
             return refreshAttempt
         }
-        else if(response.status == 200) {
+        else if(response.status === 200) {
             const data = await response.json()
             if(!data) return {data: false, status: response.status}
             return {data: data, status: response.status}

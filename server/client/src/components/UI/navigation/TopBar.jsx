@@ -17,7 +17,7 @@ function TopBar() {
 
         const checkTokensBooster = async ()=>{ // this will log you out if you lose hold of your refresh tokens at any point
             const pageLocation = window.location.pathname.split('?')[0].split('/')[1]
-            if(!(pageLocation == 'login' || pageLocation == 'register')) await checkTokens()
+            if(!(pageLocation === 'login' || pageLocation === 'register')) await checkTokens()
             else return
         }
 
