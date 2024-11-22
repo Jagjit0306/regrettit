@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import login from "../../backend/login";
 import MainContainer from "../UI/MainContainer";
 
+import logo from '../../media/logo.png'
+
 function getCookie(key) {
     var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
     return b ? b.pop() : "";
@@ -90,6 +92,9 @@ function LoginPage() {
     
     return (
         <MainContainer heading='Regrettit'>
+            <VStack width={'100%'}>
+            <img src={logo} style={{height:"25vh"}} alt="logo" />
+            </VStack>
             <VStack>
             <LoginForm/>
             <br/>

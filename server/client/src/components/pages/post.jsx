@@ -1,4 +1,4 @@
-import { VStack, HStack, Text, Box } from "@chakra-ui/react"
+import { VStack, HStack, Text, Box, Center } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import getData from "../../backend/getData"
 
@@ -66,15 +66,23 @@ export default function Post(props) {
                 </Box>
             }
             <HStack>
-                <Box 
+                <Center 
                     onClick={()=>{SubmitVote(true)}}
-                    style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===2?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"red"}}
-                >+</Box>
-                <Text>{votes}</Text>
-                <Box 
+                    style={{fontWeight:"800", color:(statuscode===2?'white':'red'), border:(statuscode===2?'':'3px solid red'), 
+                        borderRadius:'5px', cursor:'pointer', userSelect:"none", backgroundColor:(statuscode===2?"red":'white'),
+                        fontSize:"1.2rem", height:"5vh", width:"5vh"
+                    }}
+                >
+                <Text>+</Text></Center>
+                <Text color={statuscode===1?'black':(statuscode===2?'red':'blue')} fontWeight={'800'} fontSize={'large'}>{votes}</Text>
+                <Center 
                     onClick={()=>{SubmitVote(false)}}
-                    style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===3?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"blue"}}
-                >-</Box>
+                    style={{fontWeight:"800", color:(statuscode===3?'white':"blue"), border:(statuscode===3?'':'3px solid blue'), 
+                        borderRadius:'5px', cursor:'pointer', userSelect:"none", backgroundColor:(statuscode===3?"blue":'white'),
+                        fontSize:"1.2rem", height:"5vh", width:"5vh"
+                    }}
+                >
+                <Text>-</Text></Center>
             </HStack>
             {/* <Text>STATUS CODE IS {statuscode}</Text> */}
         </VStack>

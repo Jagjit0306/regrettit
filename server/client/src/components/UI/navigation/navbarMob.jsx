@@ -1,13 +1,13 @@
 import { Flex, Box } from "@chakra-ui/react"
 
 import HomeButton from "./components/homeButton"
-import { SubsButton } from './components/actionButtons'
+import { SubsButton, UsersButton } from './components/actionButtons'
 
 export default function NavbarMob() {
     return (
         <>
         <Box style={{
-            backgroundColor: 'gray',
+            backgroundColor: '#e74727',
             width: '100vw',
             height: '8vh',
             color:'white'
@@ -20,6 +20,7 @@ export default function NavbarMob() {
                     <HomeButton mobile/>
                 </Flex>
                 <Flex style={{boxSizing:"border-box", width: '100%'}} justifyContent={'space-evenly'} alignItems={'center'} >
+                    <UsersButton/>
                 </Flex>
             </Flex>
         </Box>

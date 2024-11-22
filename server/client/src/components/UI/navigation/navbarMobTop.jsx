@@ -10,13 +10,13 @@ function NavbarMobTop() {
     return (
         <>
         <div style={{
-            backgroundColor: 'gray',
+            backgroundColor: 'black',
             height: '8vh',
             color:'white',
             alignContent:'center'
         }}>
            <Flex alignItems={'center'} justifyContent={'space-between'} padding={'1em'}>
-                <FaArrowLeft onClick={()=>navigate(-1)} size='2.5em'/>
+                <FaArrowLeft onClick={()=>navigate(-1)} size='1.5em'/>
                 <LogoutButton/>
            </Flex>
         </div>

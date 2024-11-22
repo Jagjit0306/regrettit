@@ -5,7 +5,7 @@ import logout from "../../../../backend/logout";
 function LogoutButton () {
     return (
         <>
-            <Button colorScheme="red" onClick={logout}>
+            <Button colorScheme="gray" onClick={logout}>
                 LOGOUT
             </Button>
         </>

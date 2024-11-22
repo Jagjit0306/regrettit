@@ -43,7 +43,7 @@ export default function UsersList() {
     return (
         <MainContainer heading='Regretters'>
             {
-                !(userlist&&userlist.length)?'No users exist... HOW ARE YOU SEEING THIS ???':
+                !(userlist&&userlist.length)?'':
                 <Users data={userlist} />
             }
         </MainContainer>

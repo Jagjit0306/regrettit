@@ -23,13 +23,13 @@ export default function NewPost(props) {
 
     useEffect(()=>{
         if(props.subs.length===1) {
-            console.log("setting sub to", props.subs[0])
+            // console.log("setting sub to", props.subs[0])
             setFsub(props.subs[0])
         }
     },[props.subs])
 
     async function submitForm() {
-        console.log('posting regret')
+        // console.log('posting regret')
         const payload = {
             title: title,
             content: content,
@@ -76,7 +76,7 @@ export default function NewPost(props) {
                             <FormLabel>SubRegrettit</FormLabel>
                             <Select isDisabled={props.subs.length===1} onChange={(e)=>setFsub(e.target.value)} value={fsub} placeholder={'Where do you want to post it ?'}>
                                 {props.subs.map((s,key)=>(
-                                    <option key={key} value={s}>{s}</option>
+                                    <option key={key} value={s}>r/{s}</option>
                                 ))}
                             </Select>
                             <FormLabel>Post Title</FormLabel>

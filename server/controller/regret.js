@@ -19,7 +19,7 @@ async function NewSub(req, res) {
 
 async function GetAllSubs(req, res) {
     const subsAll = await subs.find()
-    if(subsAll) res.json({data: subsAll})
+    if(subsAll) res.json({data: subsAll.reverse()})
         else res.json({status:'error'})
 }
 
@@ -130,17 +130,17 @@ async function VoteStatus(req, res) {
 
 async function GetSubPosts(req, res) {
     const reqposts = await posts.find({sub: req.query.sub})
-    if(reqposts) res.json({data:reqposts})
+    if(reqposts) res.json({data:reqposts.reverse()})
 }
 
 async function GetAllUsers(req, res) {
     const allusers = await users.find()
-    if(allusers) res.json({data:allusers})
+    if(allusers) res.json({data:allusers.reverse()})
 }
 
 async function GetPostsFromUser(req, res) {
     const userposts = await posts.find({OP:req.query.userid})
-    if(userposts) res.json({data:userposts})
+    if(userposts) res.json({data:userposts.reverse()})
 }
 
 async function IsFollowSub(req, res) {
@@ -182,8 +182,8 @@ async function HomePage(req, res) {
 
         let allposts = await posts.find()
         if(allposts){
-            allposts = allposts.filter(e=>sublist.includes(e.sub))
-            res.json({data:allposts})
+            allposts = allposts.filter(e=>sublist.includes(e.sub)).reverse()
+            res.json({data:allposts, subs:sublist})
         }
     }
 }

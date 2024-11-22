@@ -8,7 +8,7 @@ export default function Navbar() {
     return (
         <>
         <div style={{
-            backgroundColor: 'gray',
+            backgroundColor: '#e74727',
             height: '8vh',
             color:'white'
         }}>
@@ -21,7 +21,9 @@ export default function Navbar() {
                     <HomeButton/>
                 </Flex>
                 <Flex style={{boxSizing:"border-box", width: '100%'}} justifyContent={'flex-end'} alignItems={'center'} >
+                    <div style={{marginRight:"20px"}}>
                     <LogoutButton/>
+                    </div>
                 </Flex>
             </Flex>
         </div>

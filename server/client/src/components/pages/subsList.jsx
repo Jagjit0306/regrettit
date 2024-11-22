@@ -144,7 +144,7 @@ export default function SubsList() {
         <MainContainer heading='subRegrettits'>
             <NewSub/>
             {
-                !(sublist&&sublist.length)?'No subs exist right now':
+                !(sublist&&sublist.length)?'':
                 <Subs data={sublist}/>
             }
         </MainContainer>
