@@ -29,14 +29,16 @@ async function GetSub(req, res) {
         else res.json({status:"error"})
 }
 
-// async function GetSubPosts(req, res) {
-//     const 
-// }
-
 async function GetUserById(req, res) {
     const d = await users.findById(req.query.id)
     if(d) res.json({data:d, status:'complete'})
         else res.json({status:'error'})
+}
+
+async function GetUserByUsername(req, res) {
+    const d = await users.findOne({username: req.query.username})
+    if(d) res.json({data:d, status: 'complete'})
+        else res.json({status:"error"})
 }
 
 async function NewPost(req, res)  {
@@ -53,36 +55,78 @@ async function NewPost(req, res)  {
 }
 
 async function Vote(req, res) {
+    console.log("query recieved ->", req.query)
     const updatePost = await posts.findById(req.query.postid)
-    const user = await users.findOne(req.userid)
+    const user = await users.findById(req.userid)
     if(updatePost && user) {
-        if(req.query.upvote){
-            updatePost.upvote += 1
-            let t
-            if(user.upvoted) {
-                t = JSON.parse(user.upvoted)
-                t.append(req.query.postid)
-            } else {    
-                t = [req.query.postid]
-            }
-            user.upvoted = JSON.stringify(t)
-        } 
-        else {
-            updatePost.downvote += 1
-            let t
-            if(user.downvoted) {
-                t = JSON.parse(user.downvoted)
-                t.append(req.query.postid)
-            } else {    
-                t = [req.query.postid]
-            }
-            user.downvoted = JSON.stringify(t)
+        let upvoted = false
+        let downvoted = false
+        let upvotedlist = []
+        let downvotedlist = []
+        if(user.upvoted) {
+            upvotedlist = JSON.parse(user.upvoted)
+        }
+        if(user.downvoted) {
+            downvotedlist = JSON.parse(user.downvoted)
+        }
+        if(upvotedlist.includes(req.query.postid)) upvoted = true
+        else if(downvotedlist.includes(req.query.postid)) downvoted = true
 
-        } 
-        await updatePost.save()
-        await user.save()
-
+        if (upvoted && req.query.upvote === 'false') {
+            upvotedlist = upvotedlist.filter(e => e != req.query.postid);
+            updatePost.upvotes -= 1;
+            user.upvoted = JSON.stringify(upvotedlist);
+        
+            downvotedlist.push(req.query.postid);
+            updatePost.downvotes += 1;
+            user.downvoted = JSON.stringify(downvotedlist);
+        } else if (downvoted && req.query.upvote === 'true') {
+            downvotedlist = downvotedlist.filter(e => e != req.query.postid);
+            updatePost.downvotes -= 1;
+            user.downvoted = JSON.stringify(downvotedlist);
+        
+            upvotedlist.push(req.query.postid);
+            updatePost.upvotes += 1;
+            user.upvoted = JSON.stringify(upvotedlist);
+        } else if (!upvoted && req.query.upvote === 'true') {
+            upvotedlist.push(req.query.postid);
+            updatePost.upvotes += 1;
+            user.upvoted = JSON.stringify(upvotedlist);
+        } else if (!downvoted && req.query.upvote === 'false') {
+            downvotedlist.push(req.query.postid);
+            updatePost.downvotes += 1;
+            user.downvoted = JSON.stringify(downvotedlist);
+        } else if (upvoted && req.query.upvote === 'true') {
+            upvotedlist = upvotedlist.filter(e => e != req.query.postid);
+            updatePost.upvotes -= 1;
+            user.upvoted = JSON.stringify(upvotedlist);
+        } else if (downvoted && req.query.upvote === 'false') {
+            downvotedlist = downvotedlist.filter(e => e != req.query.postid);
+            updatePost.downvotes -= 1;
+            user.downvoted = JSON.stringify(downvotedlist);
+        }
+        
+        await user.save();
+        await updatePost.save();
+        
+        res.json({status:'complete'})
     } else res.json({status:'error'})
+}
+
+async function VoteStatus(req, res) {
+    let statuscode = 1 // 1 for not interacted, 2 for upvoted and 3 for downvoted
+    const you = await users.findById(req.userid)
+    if(you) {
+        if(you.upvoted){
+            let ups = JSON.parse(you.upvoted)
+            if(ups.includes(req.query.postid)) statuscode = 2
+        }
+        if(you.downvoted){
+            let downs = JSON.parse(you.downvoted)
+            if(downs.includes(req.query.postid)) statuscode = 3
+        }
+    }
+    res.json({statuscode:statuscode})
 }
 
 async function GetSubPosts(req, res) {
@@ -95,4 +139,9 @@ async function GetAllUsers(req, res) {
     if(allusers) res.json({data:allusers})
 }
 
-module.exports = { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetSubPosts, GetAllUsers }
+async function GetPostsFromUser(req, res) {
+    const userposts = await posts.find({OP:req.query.userid})
+    if(userposts) res.json({data:userposts})
+}
+
+module.exports = { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetUserByUsername, GetSubPosts, GetAllUsers, GetPostsFromUser, VoteStatus }

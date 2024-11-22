@@ -60,7 +60,7 @@ export default function Sub() {
     return (
         <MainContainer heading={`r/${subname}`}>
             <Text textAlign={'center'} color={'gray'}><b>{subDes}</b></Text>
-            <Text><b>Owned By -</b> {subOwner}</Text>
+            <Text><b>Owned By -</b> <a href={`/u/${subOwner}`}>u/{subOwner}</a></Text>
             <Divider marginBottom={'40px'}/>
             <Posts/>
         </MainContainer>

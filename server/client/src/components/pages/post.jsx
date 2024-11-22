@@ -14,15 +14,42 @@ export default function Post(props) {
         fetchOP()
     },[props.data.OP])
 
+    const [statuscode, setStatuscode] = useState(69)
+
+    async function getvotestatus() {
+        const response = await getData('/api/votestatus', {postid:props.data._id})
+        if(response && response.data.statuscode!==statuscode) setStatuscode(response.data.statuscode)
+    }
+    useEffect(()=>{
+        getvotestatus()
+    })
+
+    async function SubmitVote(upvote) {
+        const response = await getData('/api/vote', {postid:props.data._id, upvote:upvote})
+        if(response) await getvotestatus()
+    }
+
     return (
         <VStack style={{border:"1px solid black", padding:'10px', margin:'20px', borderRadius:"5px"}}>
             <Text textAlign={'left'} width={'100%'}><b>{props.data.title||'Title not loaded :/'}</b></Text>
             <Text textAlign={'left'} width={'100%'} color='gray' fontSize={'small'}>
             {
-                !OP?'Loading...':
-                <a href={`/u/${OP}`}>
-                u/{OP}
+                window.location.pathname.split('/')[1]==='r'?'':
+                <a href={`/r/${props.data.sub}`}>
+                r/{props.data.sub}
                 </a>
+            }
+            {/* <br /> */}
+            {
+                window.location.pathname.split('/')[1]==='u'?'':
+                <>
+                    {
+                        !OP?'Loading...':
+                        <a href={`/u/${OP}`}>
+                        u/{OP}
+                        </a>
+                    }
+                </>
             }
             </Text>
             {
@@ -36,10 +63,17 @@ export default function Post(props) {
                 </Box>
             }
             <HStack>
-                <Box style={{padding:"2px", aspectRatio:"1", color:'white', borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"red"}}>+</Box>
+                <Box 
+                    onClick={()=>{SubmitVote(true)}}
+                    style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===2?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"red"}}
+                >+</Box>
                 <Text>{props.data.upvotes - props.data.downvotes}</Text>
-                <Box style={{padding:"2px", aspectRatio:"1", color:'white', borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"blue"}}>-</Box>
+                <Box 
+                    onClick={()=>{SubmitVote(false)}}
+                    style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===3?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"blue"}}
+                >-</Box>
             </HStack>
+            <Text>STATUS CODE IS {statuscode}</Text>
         </VStack>
     )
 }

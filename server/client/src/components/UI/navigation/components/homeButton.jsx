@@ -1,12 +1,9 @@
 import { Box, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 
-function HomeButton(props) {
+function HomeButton() {
 
     const homeButtonStyle = {
-        // border: '2px solid black',
-        // backgroundColor: 'white',
-        // borderRadius: '100%',
         height: '8vh',
         width: '8vh',
         userSelect: 'none',

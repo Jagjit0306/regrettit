@@ -1,6 +1,6 @@
 const { Login, Register, Logout } = require('./controller/initial')
 const { Token, UsernameCheck, ValidateToken } = require('./controller/basic')
-const { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetSubPosts, GetAllUsers } = require('./controller/regret')
+const { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetUserByUsername, GetSubPosts, GetAllUsers, GetPostsFromUser, VoteStatus } = require('./controller/regret')
 
 const authenticateToken = require('./functions/authenticateToken')
 const authenticateUser = require('./functions/authenticateUser')
@@ -39,8 +39,14 @@ router.get('/vote', authenticateToken, Vote)
 
 router.get('/getuserbyid', authenticateToken, GetUserById)
 
+router.get('/getuserbyusername', authenticateToken, GetUserByUsername)
+
 router.get('/getsubposts', authenticateToken, GetSubPosts)
 
 router.get('/getallusers', authenticateToken, GetAllUsers)
+
+router.get('/getuserposts', authenticateToken, GetPostsFromUser)
+
+router.get('/votestatus', authenticateToken, VoteStatus)
 
 module.exports = router

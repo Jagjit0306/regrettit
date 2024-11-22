@@ -67,6 +67,7 @@ export default function SubsList() {
                   onClose();
                   setFormSName('')
                   setFormDes('')
+                  fetchSubs()
                 }
             } else {
                 toast({
@@ -120,7 +121,7 @@ export default function SubsList() {
                 {/* <Text>{JSON.stringify(props.data)}</Text> */}
                 <Text>r/{props.data.name}</Text>
                 <Text>Description - {props.data.description}</Text>
-                <Button colorScheme="green" margin={'auto'} onClick={()=>{navigate(`/r/${props.data.name}`)}}>Explore</Button>
+                <Button colorScheme="blue" margin={'auto'} onClick={()=>{navigate(`/r/${props.data.name}`)}}>Checkkit</Button>
             </VStack>
         )
     }
@@ -141,7 +142,6 @@ export default function SubsList() {
 
     return (
         <MainContainer heading='subRegrettits'>
-            find the subs here <br />
             <NewSub/>
             {
                 !(sublist&&sublist.length)?'No subs exist right now':

@@ -9,6 +9,7 @@ import HomePage from './components/pages/homePage';
 import SubsList from './components/pages/subsList';
 import Sub from './components/pages/sub';
 import UsersList from './components/pages/usersList';
+import User from './components/pages/users';
 
 function App() {
 
@@ -69,7 +70,7 @@ function App() {
           <Route path='/r' element = {<Dummy element={<SubsList/>}/>} />
           <Route path='/r/:subname' element = {<Dummy element={<Sub/>}/>} />
           <Route path='/u' element = {<Dummy element={<UsersList/>}/>} />
-          <Route path='/u:username' element = {<Dummy element={<UsersList/>}/>} />
+          <Route path='/u/:username' element = {<Dummy element={<User/>}/>} />
         </Routes>
     </div>
   );

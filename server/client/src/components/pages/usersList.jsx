@@ -25,7 +25,7 @@ export default function UsersList() {
                 {/* <Text>{JSON.stringify(props.data)}</Text> */}
                 <Text>u/{props.data.username}</Text>
                 <Text color={'gray'}>{props.data.name}</Text>
-                <Button colorScheme="green" margin={'auto'} onClick={()=>{navigate(`/u/${props.data.username}`)}}>View Profile</Button>
+                <Button colorScheme="green" margin={'auto'} onClick={()=>{navigate(`/u/${props.data.username}`)}}>Checkkit</Button>
             </VStack>
         )
     }
@@ -42,7 +42,6 @@ export default function UsersList() {
 
     return (
         <MainContainer heading='Regretters'>
-            Users will be found here <br />
             {
                 !(userlist&&userlist.length)?'No users exist... HOW ARE YOU SEEING THIS ???':
                 <Users data={userlist} />
