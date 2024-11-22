@@ -34,7 +34,7 @@ function LoginForm() {
 
     return (
         <>
-        <FormControl mt={4}>
+        <FormControl style={{color:'white'}} mt={4}>
             <FormLabel>Username</FormLabel>
             <Input
             placeholder='username'

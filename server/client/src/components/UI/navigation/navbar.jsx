@@ -9,7 +9,7 @@ export default function Navbar() {
         <>
         <div style={{
             backgroundColor: '#e74727',
-            height: '8vh',
+            height: '6vh',
             color:'white'
         }}>
             <Flex alignItems={'center'} justifyContent={'space-between'} >

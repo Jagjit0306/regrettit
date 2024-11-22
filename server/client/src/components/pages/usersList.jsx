@@ -21,11 +21,11 @@ export default function UsersList() {
 
     function UserCards(props) {
         return(
-            <VStack style={{width:"100%", border:"1px solid black", borderRadius:"5px", padding:"10px", margin:'auto'}}>
+            <VStack style={{width:"100%", color:'white', border:"2px solid #2b3236", borderRadius:"5px", padding:"10px", margin:'auto'}}>
                 {/* <Text>{JSON.stringify(props.data)}</Text> */}
                 <Text>u/{props.data.username}</Text>
                 <Text color={'gray'}>{props.data.name}</Text>
-                <Button colorScheme="green" margin={'auto'} onClick={()=>{navigate(`/u/${props.data.username}`)}}>Checkkit</Button>
+                <Button color="white" backgroundColor={'#e74727'} colorScheme="red" margin={'auto'} onClick={()=>{navigate(`/u/${props.data.username}`)}}>Checkkit</Button>
             </VStack>
         )
     }

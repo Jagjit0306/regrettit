@@ -5,8 +5,9 @@ export function containerStyle(mobile) {
         marginBottom:'40px',
         borderRadius:"25px",
         padding: '10px',
-        border: '1px solid black',
+        border: '2px solid #2b3236',
         width: mobile?'95vw':'60vw',
+        backgroundColor:'#0f1113'
     }
 
     return style

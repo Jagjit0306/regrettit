@@ -10,11 +10,11 @@ function MainContainer(props) {
         if(window.innerWidth !== width) setWidth(window.innerWidth)
     },200)
     return (
-        <Box style={containerStyle(width<950)}>
+        <Box shadow={'lg'} style={containerStyle(width<950)}>
             {
             !props.heading?'':
             <>
-                <Heading style={{textAlign:"center"}}>
+                <Heading style={{textAlign:"center",margin:'30px', color:'white'}}>
                     {props.heading}
                 </Heading>
             </>
