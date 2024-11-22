@@ -6,7 +6,7 @@ export function containerStyle(mobile) {
         borderRadius:"25px",
         padding: '10px',
         border: '1px solid black',
-        width: mobile?'95vw':'80vw',
+        width: mobile?'95vw':'60vw',
     }
 
     return style

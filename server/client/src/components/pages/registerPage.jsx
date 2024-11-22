@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import {FormControl, FormLabel, Input, Button} from '@chakra-ui/react'
+import {FormControl, FormLabel, Input, Button, VStack} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 import register from "../../backend/register";
+import MainContainer from "../UI/MainContainer";
 
 let availability = false
 
@@ -116,13 +117,15 @@ function RegisterForm() {
 
 function RegisterPage() {
     return (
-        <>
-        <RegisterForm/>
-        <br/>
-        <Link to='/'>
-        <Button>Login</Button>
-        </Link>
-        </>
+        <MainContainer heading='Start Regretting today'>
+            <VStack>
+            <RegisterForm/>
+            <br/>
+            <Link to='/'>
+            <Button>Login</Button>
+            </Link>
+            </VStack>
+        </MainContainer>
     )
 }
 

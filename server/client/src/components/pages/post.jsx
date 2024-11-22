@@ -76,7 +76,7 @@ export default function Post(props) {
                     style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===3?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"blue"}}
                 >-</Box>
             </HStack>
-            <Text>STATUS CODE IS {statuscode}</Text>
+            {/* <Text>STATUS CODE IS {statuscode}</Text> */}
         </VStack>
     )
 }

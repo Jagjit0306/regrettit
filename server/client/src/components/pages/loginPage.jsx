@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
+import { FormControl, FormLabel, VStack, Input, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 import login from "../../backend/login";
+import MainContainer from "../UI/MainContainer";
 
 function getCookie(key) {
     var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
@@ -88,13 +89,15 @@ function LoginPage() {
     setTimeout(handleAutoLogin)
     
     return (
-        <>
-        <LoginForm/>
-        <br/>
-        <Link to='/register'>
-            <Button>Create an account</Button>
-        </Link>
-        </>
+        <MainContainer heading='Regrettit'>
+            <VStack>
+            <LoginForm/>
+            <br/>
+            <Link to='/register'>
+                <Button>Create an account</Button>
+            </Link>
+            </VStack>
+        </MainContainer>
     )
 }
 
