@@ -42,7 +42,7 @@ export default function Post(props) {
                 <a href={`/r/${props.data.sub}`}>
                 r/{props.data.sub}
                 </a>
-            }
+            } <br />
             {
                 window.location.pathname.split('/')[1]==='u'?'':
                 <>

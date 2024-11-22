@@ -143,4 +143,49 @@ async function GetPostsFromUser(req, res) {
     if(userposts) res.json({data:userposts})
 }
 
-module.exports = { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetUserByUsername, GetSubPosts, GetAllUsers, GetPostsFromUser, VoteStatus }
+async function IsFollowSub(req, res) {
+    const you = await users.findById(req.userid)
+    if(you){
+        let following = false
+        let sublist = []
+        if(you.subs){
+            sublist = JSON.parse(you.subs)
+        }
+        if(sublist.includes(req.query.sub)) following = true
+
+        res.json({following:following})
+    }
+}
+
+async function FollowSub(req, res) {
+    const you = await users.findById(req.userid)
+    if(you){
+        let sublist = []
+        if(you.subs) sublist = JSON.parse(you.subs)
+
+        if(sublist.includes(req.query.sub)) 
+            sublist = sublist.filter(e=>e!=req.query.sub)
+        else sublist.push(req.query.sub)
+
+        you.subs = JSON.stringify(sublist)
+
+        await you.save()
+        res.json({status:'complete'})
+    }
+}
+
+async function HomePage(req, res) {
+    const you = await users.findById(req.userid)
+    if(you) {
+        let sublist = []
+        if(you.subs) sublist = JSON.parse(you.subs)
+
+        let allposts = await posts.find()
+        if(allposts){
+            allposts = allposts.filter(e=>sublist.includes(e.sub))
+            res.json({data:allposts})
+        }
+    }
+}
+
+module.exports = { NewSub, GetAllSubs, GetSub, NewPost, Vote, GetUserById, GetUserByUsername, GetSubPosts, GetAllUsers, GetPostsFromUser, VoteStatus, IsFollowSub, FollowSub, HomePage }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Text, Divider, VStack } from "@chakra-ui/react";
+import { Text, Divider, Button, VStack } from "@chakra-ui/react";
 
 import MainContainer from "../UI/MainContainer";
 import getData from "../../backend/getData";
@@ -27,6 +27,27 @@ export default function Sub() {
     async function fetchOwner(ownerid){
         const response = await getData('/api/getuserbyid', {id:ownerid})
         if(response) setOwner(response.data.data.username)
+    }
+
+    function Follow() {
+        const [following, setFollowing] = useState(false)
+
+        async function getStatus(){
+            const response = await getData('/api/isfollowsub', {sub: subname})
+            if(response) setFollowing(response.data.following)
+        }
+        async function toggleFollow(){
+            await getData('/api/followsub', {sub:subname})
+            await getStatus()
+        }
+        useEffect(()=>{
+            getStatus()
+        },[])
+        return (
+            <VStack>
+                <Button onClick={toggleFollow} colorScheme='orange'>{following?'Unfollow':'Follow'}</Button>
+            </VStack>
+        )
     }
 
     function Posts() {
@@ -60,6 +81,7 @@ export default function Sub() {
     return (
         <MainContainer heading={`r/${subname}`}>
             <Text textAlign={'center'} color={'gray'}><b>{subDes}</b></Text>
+            <Follow/>
             <Text><b>Owned By -</b> <a href={`/u/${subOwner}`}>u/{subOwner}</a></Text>
             <Divider marginBottom={'40px'}/>
             <Posts/>
