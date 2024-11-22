@@ -106,7 +106,7 @@ export default function SubsList() {
                         Close
                     </Button>
                     <Button isDisabled={!(formSName&&formDes)} onClick={submitForm} colorScheme="green">
-                        Gettit
+                        Spreaddit
                     </Button>
                 </ModalFooter>
                 </ModalContent>

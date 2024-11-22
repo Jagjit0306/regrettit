@@ -5,6 +5,7 @@ import getData from "../../backend/getData"
 export default function Post(props) {
 
     const [OP, setOP] = useState('loading...')
+    const[votes, setVotes] = useState(props.data.upvotes-props.data.downvotes)
 
     useEffect(()=>{
         async function fetchOP() {
@@ -26,7 +27,10 @@ export default function Post(props) {
 
     async function SubmitVote(upvote) {
         const response = await getData('/api/vote', {postid:props.data._id, upvote:upvote})
-        if(response) await getvotestatus()
+        if(response) {
+            await getvotestatus()
+            setVotes(response.data.newvotes)
+        }
     }
 
     return (
@@ -39,7 +43,6 @@ export default function Post(props) {
                 r/{props.data.sub}
                 </a>
             }
-            {/* <br /> */}
             {
                 window.location.pathname.split('/')[1]==='u'?'':
                 <>
@@ -54,7 +57,7 @@ export default function Post(props) {
             </Text>
             {
                 !props.data.image?'':
-                <img src={`${props.data.image}`} style={{maxHeight:"25vh"}} alt='attatched_image'/>
+                <img src={`${props.data.image}`} style={{maxHeight:"35vh"}} alt='attatched_image'/>
             }
             {
                 !props.data.content?"":
@@ -67,7 +70,7 @@ export default function Post(props) {
                     onClick={()=>{SubmitVote(true)}}
                     style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===2?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"red"}}
                 >+</Box>
-                <Text>{props.data.upvotes - props.data.downvotes}</Text>
+                <Text>{votes}</Text>
                 <Box 
                     onClick={()=>{SubmitVote(false)}}
                     style={{padding:"2px", aspectRatio:"1", color:'white', border:(statuscode===3?'3px solid cyan':''), borderRadius:'2px', cursor:'pointer', userSelect:"none", backgroundColor:"blue"}}

@@ -55,7 +55,6 @@ async function NewPost(req, res)  {
 }
 
 async function Vote(req, res) {
-    console.log("query recieved ->", req.query)
     const updatePost = await posts.findById(req.query.postid)
     const user = await users.findById(req.userid)
     if(updatePost && user) {
@@ -109,7 +108,7 @@ async function Vote(req, res) {
         await user.save();
         await updatePost.save();
         
-        res.json({status:'complete'})
+        res.json({status:'complete', newvotes: updatePost.upvotes-updatePost.downvotes})
     } else res.json({status:'error'})
 }
 

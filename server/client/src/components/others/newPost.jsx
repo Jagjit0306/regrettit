@@ -68,7 +68,7 @@ export default function NewPost(props) {
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                <ModalHeader>Father a regret</ModalHeader>
+                <ModalHeader>Keep on regretting</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <FormControl>
@@ -92,7 +92,7 @@ export default function NewPost(props) {
                     <Button colorScheme='blue' mr={3} onClick={onClose}>
                         Close
                     </Button>
-                    <Button isDisabled={!(title && fsub && (content||image))} onClick={submitForm} colorScheme="green">Gettit</Button>
+                    <Button isDisabled={!(title && fsub && (content||image))} onClick={submitForm} colorScheme="green">Spreaddit</Button>
                 </ModalFooter>
                 </ModalContent>
             </Modal>
