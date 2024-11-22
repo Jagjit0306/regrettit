@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Text, Divider, Button, VStack } from "@chakra-ui/react";
+import { Text, Divider, Button, VStack, Center } from "@chakra-ui/react";
 
 import MainContainer from "../UI/MainContainer";
 import getData from "../../backend/getData";
@@ -45,7 +45,7 @@ export default function Sub() {
         },[])
         return (
             <VStack>
-                <Button onClick={toggleFollow} colorScheme='orange'>{following?'Unfollow':'Follow'}</Button>
+                <Button onClick={toggleFollow} color="white" backgroundColor={'#e74727'} colorScheme="red">{following?'Unfollow':'Follow'}</Button>
             </VStack>
         )
     }
@@ -67,7 +67,12 @@ export default function Sub() {
             <br />
             {
                 !(posts&&posts.length)?
-                'Currently, there are no posts in this subregrettit':
+                <Center color={'white'}>
+                <br />
+                Currently, there are no posts in this subregrettit
+                <br />
+                <br />
+                </Center>:
                 <>
                 {/* <VStack> */}
                 {posts.map(p=>(<Post data={p}/>))}
@@ -82,7 +87,7 @@ export default function Sub() {
         <MainContainer heading={`r/${subname}`}>
             <Text textAlign={'center'} color={'gray'}><b>{subDes}</b></Text>
             <Follow/>
-            <Text><b>Owned By -</b> <a href={`/u/${subOwner}`}>u/{subOwner}</a></Text>
+            <Text color={'darkgray'} ><b>Owned By -</b> <a href={`/u/${subOwner}`}>u/{subOwner}</a></Text>
             <Divider marginBottom={'40px'}/>
             <Posts/>
         </MainContainer>

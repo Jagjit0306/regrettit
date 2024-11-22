@@ -82,7 +82,7 @@ export default function SubsList() {
 
         return (
             <>
-            <Button onClick={onOpen} colorScheme="green">New Subregrettit</Button>
+            <Button onClick={onOpen} colorScheme="whiteAlpha">New Subregrettit</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -117,11 +117,11 @@ export default function SubsList() {
 
     function SubCards(props) {
         return(
-            <VStack style={{width:"100%", border:"1px solid black", borderRadius:"5px", padding:"10px", margin:'auto'}}>
+            <VStack style={{width:"100%", color:'white', border:"2px solid #2b3236", borderRadius:"5px", padding:"10px", margin:'auto'}}>
                 {/* <Text>{JSON.stringify(props.data)}</Text> */}
                 <Text>r/{props.data.name}</Text>
-                <Text>Description - {props.data.description}</Text>
-                <Button colorScheme="blue" margin={'auto'} onClick={()=>{navigate(`/r/${props.data.name}`)}}>Checkkit</Button>
+                <Text color={'gray'}>Description - {props.data.description}</Text>
+                <Button color="white" backgroundColor={'#e74727'} colorScheme="red" margin={'auto'} onClick={()=>{navigate(`/r/${props.data.name}`)}}>Checkkit</Button>
             </VStack>
         )
     }

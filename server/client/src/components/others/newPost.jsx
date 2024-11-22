@@ -64,7 +64,7 @@ export default function NewPost(props) {
     return (
         <>
 
-        <Button onClick={onOpen} colorScheme="green">New Post</Button>
+        <Button onClick={onOpen} color="white" backgroundColor={'#e74727'} colorScheme="red">New Post</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

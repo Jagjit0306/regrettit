@@ -64,11 +64,12 @@ export default function User() {
 
         return (
             <>
-            <Heading style={{fontSize:"large", textAlign:"center", textDecoration:"underline"}}>User Post History</Heading>
+            <Heading style={{fontSize:"large", textAlign:"center",color:'white', textDecoration:"underline"}}>User Post History</Heading>
             {
                 !(postData && postData.length)?
-                <Text textAlign={'center'}> <br />
+                <Text textAlign={'center'} color={'gray'}> <br />
                     There seems to be nothing here...
+                    <br /><br />
                 </Text>
                 :
                 <>
@@ -84,11 +85,11 @@ export default function User() {
             {
                 !userdata?'':
                 <>
-                <VStack style={{border:"1px solid lightgray", padding:'20px', borderRadius:"15px", margin:'10px'}}>
-                    <Text><b>Name - </b>{userdata.name}</Text>
-                    <Text><b>Phone - </b>{userdata.phone}</Text>
-                    <Text><b>Email - </b>{userdata.email}</Text>
-                    <Text><b>Regretting Since - </b>{timeDifferenceFromNow(userdata.createdAt)}</Text>
+                <VStack style={{border:"1px solid lightgray",color:'white', padding:'20px', borderRadius:"15px", margin:'10px'}}>
+                    <Text><b style={{color:'darkgray'}}>Name - </b>{userdata.name}</Text>
+                    <Text><b style={{color:'darkgray'}}>Phone - </b>{userdata.phone}</Text>
+                    <Text><b style={{color:'darkgray'}}>Email - </b>{userdata.email}</Text>
+                    <Text><b style={{color:'darkgray'}}>Regretting Since - </b>{timeDifferenceFromNow(userdata.createdAt)}</Text>
                 </VStack>
                 <Divider marginBottom={'40px'}/>
                 <Posts/>

@@ -31,9 +31,9 @@ function CheckAvailability(props) {
     return(
         <>
             {availStatus?(
-                <p>This username is available.</p>
+                <p style={{color:'green'}}>This username is available.</p>
             ):(
-                <p>This username is taken.</p>
+                <p style={{color:'#d55335'}}>This username is taken.</p>
             )}
         </>
     )
@@ -67,7 +67,7 @@ function RegisterForm() {
 
     return (
         <>
-        <FormControl mt={4}>
+        <FormControl style={{color:'white'}} mt={4}>
             <FormLabel>Name</FormLabel>
             <Input
             placeholder='name'
